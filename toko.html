@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pembelian Tiket</title>
+</head>
+<style>
+  body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://img.freepik.com/free-photo/feminine-clothes-hangers-white-background_53876-102378.jpg') 
+             no-repeat center center fixed;
+  background-size: cover;
+  color: #000000;
+  line-height: 1.6;
+  }
+
+  body::before {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   background: rgba(255, 255, 255, 0.5);
+  z-index: -1;
+  position: fixed;
+
+  }
+
+
+   header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;  /* lebih tinggi dari semua elemen */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, white, #bed9ff);
+  padding: 15px 40px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+
+}
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-container img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid rgb(0, 0, 0);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 700;
+    color:  #000000;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  }
+   
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+    position: relative;
+    color: #000000;
+  }
+
+  nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    transition: width 0.3s ease;
+  }
+
+  nav ul li a:hover::after {
+    width: 100%;
+  }
+
+  nav ul li a:hover {
+    color: #0d3f65a3;
+  }
+
+  .hero {
+  text-align: center;
+  color: white;
+  padding: 100px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 96,5%;
+  height: 60vh;
+  background-image: url("WPP\ BLUR.jpg");
+  background-size: cover;
+  background-position: center;
+  }
+
+  .hero h2 {
+    font-size: 2.4em;
+    text-align: center;
+    color:  #6f83dc;
+  }
+
+  .hero p {
+    font-size: 1.1em;
+    max-width: 600px;
+    margin: 0 auto;
+    color:  #7986cb;
+    opacity: 0.9;
+  }
+
+  .Tentang {
+    background-color: #fff;
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-margin-top: 90px;
+  }
+
+  .Tentang:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .Tentang h3 {
+    color: rgb(46, 35, 107);
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .Tentang h3::after {
+    content: "";
+    width: 80px;
+    height: 3px;
+    background: rgb(2, 40, 117);
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+
+  .produk-section {
+    text-align: center;
+    padding: 40px 20px;
+    scroll-margin-top: 90px;
+  }
+
+  .produk-section h3 {
+    color: rgb(16, 72, 108);
+    font-size: 1.9em;
+    margin-bottom: 25px;
+  }
+
+  .produk-section p {
+    color: #244a63;
+  }
+
+  .produk-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+  }
+
+  .produk-card {
+    background-color: rgba(194, 198, 255, 0.644);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .produk-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .produk-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .produk-card h4 {
+    margin: 10px 0 5px;
+    color: rgba(8, 32, 68, 0.767)
+  }
+
+  .contact-container {
+    max-width: 750px;
+    margin: 70px auto;
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .contact-container h2 {
+    color: rgb(17, 31, 81);
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .Tentang,
+    .contact-container {
+      margin: 30px 15px;
+      padding: 25px;
+    }
+
+    .hero h2 {
+      font-size: 1.8em;
+    }
+  }
+
+  .tabel-harga {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 18px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.tabel-harga h3 {
+  color: rgb(16, 72, 108);
+  font-size: 1.9em;
+  margin-bottom: 20px;
+}
+
+.tabel-harga table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+}
+
+.tabel-harga th {
+  background: #bed9ff;
+  color: #000;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.tabel-harga td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabel-harga tr:hover {
+  background: #e8f0ff;
+  transition: 0.3s ease;
+}
+
+
+  .form-pesan {
+    max-width: 750px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .form-pesan h2 {
+    text-align: center;
+    color: rgb(23, 38, 73);
+    margin-bottom: 20px;
+  }
+
+  .form-pesan input,
+  .form-pesan textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    font-size: 1em;
+  }
+
+  .form-pesan button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #233d58;
+    color: white;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  footer {
+      background-color: #000000;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+
+    
+</style>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="Sea Creatures - Print Club London.jpeg" alt="Logo Form">
+      <h1>Sea RockandRoll</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#produk">Koleksi</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Selamat Datang di Form Pembelian Tiket</h2>
+    <p>Beli tiket konsermu dari sekarang!.</p>
+  </section>
+
+  <section class="Tentang" id="tentang">
+    <h3>Tentang Kami</h3>
+    <p><strong>Form Tiket Konser</strong> kami menyediakan tiket konser band-band ternama dan legendaris!
+    beli tiketmu sekarang!, tiket di form ini hanya menyediakan tiket standar, bukan VIP!. Beli tiket di Form
+ini sekarang, kami menyediakan  layanan yamg jujur dan amanah!. Mulai dari harga Rp 2.000.000, kamu bisa membeli
+tiket konser band kesukaan mu!. Menyediakan tiket: <strong>MCR, OASIS, A7X, SLIPKNOT, BLUR, NIRVANA, QUEEN, dan GREEN DAY</strong> dan tiket ini akan berganti
+setiap band-band ternama memulai konser! cari jati dirimu sekarang!</p>
+    </section>
+
+  <section class="produk-section" id="produk">
+    <h3>Koleksi Tiket Konser</h3>
+    <p>🎸 “Beli tiketmu sekarang, dan cari jati dirimu!" 🎸</p>
+    <p><strong>No Rekening:</strong> 04251xxxxx</p>
+
+    <div class="produk-container">
+      <div class="produk-card">
+        <img src="MCR.jpeg" alt="MCR">
+        <h4>My Chemical Romance</h4>
+        <p><strong>Jadwal:</strong> Hammersonic Festival 2026</p>
+        <p><strong>Harga:</strong> Rp 2.599.000</p>
+        <p><strong>Lagu:</strong> Helena, I Don't Love You, Cancer</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="OASIS.jpeg" alt="OASIS">
+        <h4>Oasis</h4>
+        <p><strong>Jadwal:</strong> Live '25</p>
+        <p><strong>Harga:</strong> Rp 3.000.000</p>
+        <p><strong>Lagu:</strong> Don't Look Back In Anger, Wonderwall, Whatever</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="A7X.jpeg" alt="A7X">
+        <h4>Avenged Sevenfold</h4>
+        <p><strong>Jadwal:</strong> 2026</p>
+        <p><strong>Harga:</strong> Rp 2.600.000</p>
+        <p><strong>Lagu:</strong> Dear God, Danger Line, Guslinger</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="SLIPKNOT.jpeg" alt="SLIPKNOT">
+        <h4>Slipknot</h4>
+        <p><strong>Jadwal:</strong> 2027</p>
+        <p><strong>Harga:</strong> Rp 2,780.000</p>
+        <p><strong>Lagu:</strong> Duality,  Dead Memories, Sulfur</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="nirvana.jpeg" alt="NIRVANA">
+        <h4>Nirvana</h4>
+        <p><strong>Jadwal:</strong> 2027</p>
+        <p><strong>Harga:</strong> Rp 2,500.000</p>
+        <p><strong>Lagu:</strong> About a Girl, Polly, Stay Away</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="blur.jpeg" alt="BLUR">
+        <h4>Blur</h4>
+        <p><strong>Jadwal:</strong> 2027</p>
+        <p><strong>Harga:</strong> Rp 2,000.000</p>
+        <p><strong>Lagu:</strong> Good Song, Girls & Boys, Parklife</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="queen.jpeg" alt="QUEEN">
+        <h4>Queen</h4>
+        <p><strong>Jadwal:</strong> 2025</p>
+        <p><strong>Harga:</strong> Rp 3,100.000</p>
+        <p><strong>Lagu:</strong> Bohemian Rapsory, We Will Rock You, Don't Stop Me Now</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="Green Day Poster.jpeg" alt="GREENDAY">
+        <h4>Green Day</h4>
+        <p><strong>Jadwal:</strong> 2026</p>
+        <p><strong>Harga:</strong> Rp 2,500.000</p>
+        <p><strong>Lagu:</strong> Holiday, 21 Guns, Basket Case</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="tabel-harga">
+  <h3>Daftar Harga Tiket</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Band</th>
+        <th>Jadwal</th>
+        <th>Harga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>My Chemical Romance</td><td>Hammersonic 2026</td><td>Rp 2.599.000</td></tr>
+      <tr><td>Oasis</td><td>Live '25</td><td>Rp 3.000.000</td></tr>
+      <tr><td>Avenged Sevenfold</td><td>2026</td><td>Rp 2.600.000</td></tr>
+      <tr><td>Slipknot</td><td>2027</td><td>Rp 2.780.000</td></tr>
+      <tr><td>Nirvana</td><td>2027</td><td>Rp 2.500.000</td></tr>
+      <tr><td>Blur</td><td>2027</td><td>Rp 2.000.000</td></tr>
+      <tr><td>Queen</td><td>2025</td><td>Rp 3.100.000</td></tr>
+      <tr><td>Green Day</td><td>2026</td><td>Rp 2.500.000</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+   <div class="form-pesan">
+    <h2>Form Pemesanan / Data Pembeli</h2>
+    <form>
+      <label>Nama:</label>
+      <input type="text" id="nama" placeholder="Masukkan nama Anda">
+
+      <label>Nomor Rekening:</label>
+      <input type="number" id="rek" placeholder="Masukkan nomor Rekening">
+
+      <label>Email:</label>
+      <input type="email" id="email" placeholder="Masukkan alamat email">
+
+      <label>Jenis Tiket:</label>
+      <select class="select-tiket">
+        <option value="-- Pilih jenis tiket --"></option>
+        <option value="MCR">My Chemical Romance</option>
+        <option value="OASIS">Oasis</option>
+        <option value="A7X">Avenged Sevenfold</option>
+        <option value="SLIPKNOT">Slipknot</option>
+        <option value="NIRVANA">Nirvana</option>
+        <option value="BLUR">Blur</option>
+        <option value="QUEEN">Queen</option>
+        <option value="GREENDAY">Green Day</option>
+      </select>
+
+      <button type="submit" id="submit">Kirim</button>
+    </form>
+  </div>
+
+  <section class="contact-container" id="kontak">
+    <h2>Hubungi Kami Jika Ada Kendala</h2>
+    <p>📞 Telepon: <a href="tel:+6281271115712">+62 8127 111 5712</a></p>
+    <p>✉ Email: <a href="mailto:tiketband@gmail.com">tiketband@gmail.com</a></p>
+  </section>
+
+  <footer>
+    &copy; Tiket Konser
+  </footer>
+<script>
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const nama = document.getElementById("nama").value.trim();
+    const rek = document.getElementById("rek").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if(nama !== "" && rek !== "" && email !== "") {
+      alert("Terimakasih Telah Memesan di Toko Kami!");
+      this.reset();
+    } else {
+      alert("Isi Data Terlebih Dahulu!");
+    }
+  });
+</script>
+  
+
+</body>
+</html>
